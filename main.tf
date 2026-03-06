@@ -5,3 +5,9 @@ resource "aws_vpc" "roboshop" {
 
   tags = local.ec2_vpc_tags
 }
+
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.roboshop.id
+
+  tags = local.ig_final_tags
+}
