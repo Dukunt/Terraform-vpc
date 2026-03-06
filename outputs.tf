@@ -1,3 +1,3 @@
 output "ava_info" {
-    value = aws_availability_zones.available.id
+    value = data.aws_availability_zones.availablezone
 }
