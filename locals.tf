@@ -7,8 +7,14 @@ locals  {
 
     ec2_vpc_tags = merge (
                           local.common_tags,
-                          { name = " ${var.project}-${var.environment}" },
+                          { Name = "${var.project}-${var.environment}" },
                            var.vpc_tags
     )
         
+    ig_final_tags = merge (
+                           local.common_tags,
+                          { Name = "${var.project}-${var.environment}" }, 
+                          var.ig_tags
+                           )
+
 }
