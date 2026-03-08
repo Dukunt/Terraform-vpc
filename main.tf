@@ -27,7 +27,7 @@ resource "aws_subnet" "public" {
   )
   }
 
-
+#Private subnets
 resource "aws_subnet" "private" {
   count = length(var.private_subnet_cidrs)
   vpc_id     = aws_vpc.roboshop.id
@@ -37,12 +37,14 @@ resource "aws_subnet" "private" {
 
   tags = merge (
                 local.common_tags,
+             #roboshop-dev-private-us-east-1   
             { Name = "${var.project}-${var.environment}-private-${local.az_names[count.index]}" },
             var.private_subnet_tags
 
   )
   }
 
+ #database subnets
   resource "aws_subnet" "database" {
   count = length(var.database_subnet_cidrs)
   vpc_id     = aws_vpc.roboshop.id
@@ -52,8 +54,46 @@ resource "aws_subnet" "private" {
 
   tags = merge (
                 local.common_tags,
+                #roboshop-dev-database-us-east-1  
             { Name = "${var.project}-${var.environment}-database-${local.az_names[count.index]}" },
             var.database_subnet_tags
 
   )
   }
+
+  #route tables
+  resource "aws_route_table" "public_rt" {
+  vpc_id = aws_vpc.id
+
+  tags = merge (
+                local.common_tags,
+                #roboshop-dev-database-us-east-1  
+            { Name = "${var.project}-${var.environment}-public" },
+            var.public_rt_tags
+     
+  )
+}
+
+resource "aws_route_table" "private_rt" {
+  vpc_id = aws_vpc.id
+
+  tags = merge (
+                local.common_tags,
+                #roboshop-dev-private  
+            { Name = "${var.project}-${var.environment}-private" },
+            var.private_rt_tags
+     
+  )
+}
+
+resource "aws_route_table" "database_rt" {
+  vpc_id = aws_vpc.id
+
+  tags = merge (
+                local.common_tags,
+                #roboshop-dev-database
+            { Name = "${var.project}-${var.environment}-database" },
+            var.database_rt_tags
+     
+  )
+}

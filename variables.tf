@@ -52,3 +52,17 @@ variable database_subnet_tags {
     type = map
     default = {}
 }
+
+variable public_rt_tags {
+    type = map
+    default = {}
+}
+variable private_rt_tags {
+    type = map
+    default = {}
+}
+
+variable database_rt_tags {
+    type = map
+    default = {}
+}
