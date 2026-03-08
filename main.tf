@@ -87,7 +87,7 @@ resource "aws_route_table" "private_rt" {
 }
 
 resource "aws_route_table" "database_rt" {
-  vpc_id = aws_vpc.id
+  vpc_id = aws_vpc.roboshop.id
 
   tags = merge (
                 local.common_tags,
