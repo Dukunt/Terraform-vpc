@@ -66,3 +66,13 @@ variable database_rt_tags {
     type = map
     default = {}
 }
+
+variable eip_tags {
+    type = map
+    default = {}
+}
+
+variable nat_tags {
+    type = map
+    default = {}
+}
