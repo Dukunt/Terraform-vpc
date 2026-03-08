@@ -63,7 +63,7 @@ resource "aws_subnet" "private" {
 
   #route tables
   resource "aws_route_table" "public_rt" {
-  vpc_id = aws_vpc.id
+  vpc_id = aws_vpc.roboshop.id
 
   tags = merge (
                 local.common_tags,
@@ -75,7 +75,7 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_route_table" "private_rt" {
-  vpc_id = aws_vpc.id
+  vpc_id = aws_vpc.roboshop.id
 
   tags = merge (
                 local.common_tags,
