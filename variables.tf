@@ -76,3 +76,8 @@ variable nat_tags {
     type = map
     default = {}
 }
+
+variable is_peerring_required {
+    default = true
+    type = bool
+}
